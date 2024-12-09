@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Script de instalação primária para configurar o ambiente
+
+echo "Iniciando a instalação primária..."
+
+# Atualizar pacotes
+echo "Atualizando pacotes..."
+sudo apt update && sudo apt upgrade -y
+
+# Instalar dependências necessárias
+echo "Instalando dependências..."
+sudo apt install -y git curl unzip nodejs npm
+
+# Configurar outros serviços
+echo "Instalando outras dependências do instalador..."
+npm install -g pm2
+
+# Configurar ambiente do projeto
+echo "Descompactando arquivos do instalador..."
+unzip -o whaticket.zip -d /var/www/whaticket
+
+# Configurar permissões
+echo "Configurando permissões..."
+chmod -R 755 /var/www/whaticket
+
+echo "Instalação primária concluída com sucesso!"
